@@ -8,9 +8,9 @@ services:
       - NET_ADMIN
       - NET_RAW
     volumes:
-      - 3xui_db:/etc/x-ui
-      - 3xui_cert:/root/cert
-      - 3xui_acme:/root/.acme.sh
+      - ./db:/etc/x-ui
+      - ./cert:/root/cert
+      - ./acme:/root/.acme.sh
     environment:
       XRAY_VMESS_AEAD_FORCED: "false"
       XUI_ENABLE_FAIL2BAN: "true"
@@ -28,11 +28,5 @@ services:
       POSTGRES_PASSWORD: xui
       POSTGRES_DB: xui
     volumes:
-      - 3xui_pgdata:/var/lib/postgresql/data
+      - ./pgdata:/var/lib/postgresql/data
     restart: unless-stopped
-
-volumes:
-  3xui_db:
-  3xui_cert:
-  3xui_acme:
-  3xui_pgdata:
